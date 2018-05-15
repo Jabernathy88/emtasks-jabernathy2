@@ -1,8 +1,10 @@
-{{outlet}}
+<div class="container-expand text-info">
+  <h1>Tasks Index</h1>
+</div>
 
 {{#each model as |task|}}
 <div class="well">
-  <h4>{{task.title}}</h4>
+  <h4>{{#link-to 'tasks.edit' task}} {{task.title}}{{/link-to}} </h4>
   <small>
     <strong>Due:</strong> {{moment-format task.date 'MM/DD/YYYY ' 'MM-DD-YYYY'}}
     ({{moment-from-now task.date}})
