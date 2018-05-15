@@ -1,5 +1,29 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-{{outlet}}
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        {{#link-to 'tasks' class='nav-link text-white-50'}}Home{{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to 'tasks.new' class='nav-link text-success'}}New Task{{/link-to}}
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<div class="container-expand p-3 mb-2 bg-info text-white">
+  <h1>Ember Tasks Sample</h1>
+  <p class="lead text-white-50">Tutorial by Brad Traversy. This 2018 version coded by me.</p>
+</div>
+
+<div class="container">
+  {{outlet}}
+</div>
+
+{{!-- Tutorial: <a href="https://youtu.be/owDmPTSJkrg">here</a> --}}
