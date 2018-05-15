@@ -1,14 +1,15 @@
-<div class="container-expand text-info">
-  <h1>Tasks Index</h1>
-</div>
+<h1 class="text-info">Tasks Index</h1>
 
 {{#each model as |task|}}
-<div class="well">
-  <h4>{{#link-to 'tasks.edit' task}} {{task.title}}{{/link-to}} </h4>
-  <small>
-    <strong>Due:</strong> {{moment-format task.date 'MM/DD/YYYY ' 'MM-DD-YYYY'}}
-    ({{moment-from-now task.date}})
-  </small>
-  <p>{{task.description}}</p>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{#link-to 'tasks.edit' task}} {{task.title}}{{/link-to}} </h4>
+    <small>
+      <strong>Due:</strong> {{moment-format task.date 'MM/DD/YYYY ' 'MM-DD-YYYY'}}
+      ({{moment-from-now task.date}})
+    </small>
+    <p class="card-text">{{task.description}}</p>
+    <button {{action 'deleteTask' task.id}} class="btn btn-danger">Delete</button>
+  </div>
 </div>
 {{/each}}
