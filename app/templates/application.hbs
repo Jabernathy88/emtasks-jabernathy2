@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <span class="navbar-brand">Navbar</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,13 +19,20 @@
 
 <div class="container-expand p-3 mb-2 bg-info text-white">
   <h1>Ember Tasks</h1>
-  <p class="lead text-white-50">Tutorial by Brad Traversy, Dec. 2015.<br />This 2018 version coded by me.</p>
+  <p class="lead text-white-50">Track your calendar items with style.</p>
 </div>
 
-<div class="container">
-  {{outlet}}
-</div>
+{{outlet}}
+
+<br />
 
 <div class="ember-bg"></div>
 
+<footer class="bg-dark">
+  <div class="container text-white-50">
+      <br />
+      <p class="text-right">2018 code by <a href="http://http://ghostmapmedia.com/" class="text-info">Jeremy Abernathy</a> <br />Inspired by 2015 tutorial by Brad Traversy</p>
+      <br />
+  </div>
+</footer>
 {{!-- Tutorial: <a href="https://youtu.be/owDmPTSJkrg">here</a> --}}

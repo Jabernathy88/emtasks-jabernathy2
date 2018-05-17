@@ -1,18 +1,81 @@
-<h1 class="text-info">Tasks Index</h1>
+<div class="container">
+  <h1 class="text-info">Tasks Index</h1>
 
-{{#each model as |task|}}
-<div class="card">
-  <div class="card-body">
-    <h4 class="card-title">{{#link-to 'tasks.edit' task}} {{task.title}}{{/link-to}} </h4>
-    <small>
-      <strong>Due:</strong> {{moment-format task.date 'MM/DD/YYYY ' 'MM-DD-YYYY'}}
-      ({{moment-from-now task.date}})
-    </small>
-    <p class="card-text">{{task.description}}</p>
-    <button {{action 'deleteTask' task.id}} class="btn btn-danger">Delete</button>
+  {{#each model as |task|}}
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-info">{{task.title}}</h4>
+        <small>
+          <strong>Due:</strong> {{moment-format task.date 'MM/DD/YYYY ' 'MM-DD-YYYY'}}
+          ({{moment-from-now task.date}})
+        </small>
+        <p class="card-text">{{task.description}}</p>
+
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{{task.id}}" aria-expanded="false" aria-controls="collapse{{task.id}}">
+          Edit Task
+        </button>
+
+        <button {{action 'deleteTask' task.id}} class="btn btn-danger">Delete</button>
+      </div>
+
+      <div class="collapse card-footer text-muted" id="collapse{{task.id}}">
+        <form>
+          <div class="form-group">
+            <label>New Title</label>
+            {{input type="text" class="form-control" value=title placeholder=task.title }}
+          </div>
+          <div class="form-group">
+            <label>New Due Date</label>
+            {{input type="date" class="form-control" value=date }}
+          </div>
+          <div class="form-group">
+            <label>New Description</label>
+            {{textarea class="form-control" value=description placeholder=task.description }}
+          </div>
+          <button {{action 'editTask' task.id}} class="btn btn-primary" data-toggle="collapse" data-target="#collapse{{task.id}}" >Save Changes</button>
+          <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#collapse{{task.id}}" >Close</button>
+        </form>
+      </div>
+    </div>
+  {{/each}}
+
+  <div class="alert alert-secondary">
+      <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#createNewModal">
+        New Task
+      </button>
   </div>
 </div>
-{{/each}}
-<div class="alert alert-dark" role="alert">
-  {{#link-to 'tasks.new' class='btn btn-success btn-lg' role='button'}}New Task{{/link-to}}
+
+{{!-- create new --}}
+<div class="modal fade" id="createNewModal" tabindex="-1" role="dialog" aria-labelledby="createNewModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createNewModalLabel">New Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Title</label>
+          {{input type="text" class="form-control" value=title placeholder="Add Task..."}}
+        </div>
+        <div class="form-group">
+          <label>Due Date</label>
+          {{input type="date" class="form-control" value=date}}
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          {{textarea class="form-control" value=description placeholder="Describe Task..."}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button {{action 'addTask'}} class="btn btn-success" data-dismiss="modal">Save New Task</button> 
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
 </div>
